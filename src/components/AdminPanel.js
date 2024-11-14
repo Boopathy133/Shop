@@ -70,10 +70,10 @@ const AdminPanel = () => {
     // Convert searchTerm to a number to ensure matching works correctly
     const searchId = parseInt(searchTerm, 10);
 
-    // Filter users based on whether the searchTerm is a valid 12-digit userId
+    // Filter users based on whether the searchTerm is a valid 12-digit studentID
     if (!isNaN(searchId) && searchTerm.length === 12) {
       setFilteredUsers(
-        users.filter(user => user.userId === searchTerm || user.userId === searchId)
+        users.filter(user => user.studentID === searchTerm || user.studentID === searchId)
       );
     } else {
       setFilteredUsers(users); // Show all users if search term is empty or invalid
@@ -230,11 +230,11 @@ const AdminPanel = () => {
     <div className='flex justify-around pt-11'>
       <div>
         <h1 className='text-3xl font-bold text-blue-900 p-2 pl-60'>Admin Panel</h1>
-        {/* Search input for filtering users by userId */}
+        {/* Search input for filtering users by studentID */}
         <div className='p-2 pl-10'>
           <input className='p-3 rounded-lg  font-semibold text-blue-800 outline outline-blue-500'
             type="text"
-            placeholder="Search user by 12-digit userId"
+            placeholder="Search user by 12-digit studentID"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} /></div>
 
@@ -252,9 +252,9 @@ const AdminPanel = () => {
             </thead>
             <tbody>
               {filteredUsers.map(user => (
-                <tr key={user.username} style={{ backgroundColor: user.userId === searchTerm ? '#e0f7fa' : 'transparent' }}>
+                <tr key={user.username} style={{ backgroundColor: user.studentID === searchTerm ? '#e0f7fa' : 'transparent' }}>
                   <td>{user.username}</td>
-                  <td>{user.userId}</td>
+                  <td>{user.studentID}</td>
                   <td className='pl-20'>{user.coins}</td>
                   <td className='pl-5'>
                     <input className='p-1 w-20 rounded outline outline-blue-500 font-semibold text-blue-800'
